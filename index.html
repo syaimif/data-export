@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QGIS2leaf webmap</title>
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css" /> <!-- we will us e this as the styling script for our webmap-->
+	<link rel="stylesheet" type="text/css" href="css/own_style.css">
+</head>
+<body>
+	<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script> <!-- this is the javascript file that does the magic-->
+	
+			<script src='data/polygons.js' ></script>
+			
+	<script>
+		var map = L.map('map', { zoomControl:true }).fitBounds([[-0.937725,99.623336692],[1.654725,104.571663308]]);
+		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">gis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+	var feature_group = new L.featureGroup([]);
+	var raster_group = new L.LayerGroup([]);
+				
+						//add comment sign to hide this layer on the map in the initial view.
+						PolygonsJSON.addTo(map);
+	L.control.layers({'OSM Standard': basemap},{"Kabupaten": PolygonsJSON}).addTo(map);
+		window.onload = init;
+	</script>
+</body>
+</html>
+	
